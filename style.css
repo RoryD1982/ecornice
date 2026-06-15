@@ -23,7 +23,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(-
   align-items: center;
   justify-content: space-between;
   padding: 0 60px;
-  height: 72px;
+  height: 80px;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -245,3 +245,13 @@ body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(-
   .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
   .section-heading { font-size: 32px; }
 }
+
+/* ── LOGO IMAGE ── */
+.ec-logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  filter: invert(1) brightness(2);
+  transition: opacity 0.2s;
+}
+.ec-logo-img:hover { opacity: 0.85; }
