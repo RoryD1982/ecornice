@@ -6,21 +6,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="style.css?v=5" />
   <style>
     .branches-main{padding:88px 60px 48px;background:var(--off-white);}
     .branches-inner{max-width:1200px;margin:0 auto;}
     .map-section{padding:0 60px 88px;background:var(--off-white);}
-    .map-inner{max-width:1200px;margin:0 auto;display:flex;gap:48px;align-items:flex-start;}
+    .map-outer{max-width:1200px;margin:0 auto;display:flex;gap:48px;align-items:flex-start;}
     .map-wrap{flex:1.5;}
-    .map-svg{width:100%;height:auto;display:block;}
-    .branch-pin{cursor:pointer;}
-    .branch-pin .po{fill:var(--green);opacity:0.2;transition:opacity 0.2s,r 0.2s;}
-    .branch-pin .pi{fill:var(--green);transition:all 0.2s;}
-    .branch-pin .pl{font-family:'DM Sans',sans-serif;font-size:11px;fill:#1C1C1E;font-weight:500;pointer-events:none;}
-    .branch-pin:hover .po{opacity:0.4;}
-    .branch-pin.active .po{opacity:0.5;r:16;}
-    .branch-pin.active .pi{fill:#fff;stroke:var(--green);stroke-width:2;r:7;}
+    #sa-map{width:100%;height:520px;border-radius:0;z-index:1;}
     .map-panel{flex:0.85;position:sticky;top:96px;}
     .panel-default{background:var(--white);border:1px solid var(--border);padding:36px;}
     .panel-default-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--dark);margin-bottom:10px;}
@@ -47,13 +41,23 @@
     .branch-type{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
     .branch-city{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--dark);margin-bottom:4px;}
     .branch-region{font-size:12px;color:var(--muted);font-weight:300;}
-    @media(max-width:900px){.branches-main{padding:48px 24px 32px;}.map-section{padding:0 24px 48px;}.map-inner{flex-direction:column;}.map-panel{position:static;}.branches-grid{grid-template-columns:1fr 1fr;}}
+    /* Leaflet overrides */
+    .leaflet-container{background:#E8F4E8;font-family:'DM Sans',sans-serif;}
+    .leaflet-popup-content-wrapper{border-radius:0;border:1px solid var(--border);box-shadow:none;font-family:'DM Sans',sans-serif;}
+    .leaflet-popup-tip{display:none;}
+    .leaflet-control-zoom a{font-family:sans-serif;}
+    @media(max-width:900px){
+      .branches-main{padding:48px 24px 32px;}.map-section{padding:0 24px 48px;}
+      .map-outer{flex-direction:column;}.map-panel{position:static;}
+      #sa-map{height:380px;}
+      .branches-grid{grid-template-columns:1fr 1fr;}
+    }
     @media(max-width:600px){.branches-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
   <nav class="ec-nav">
-    <a href="index.html" class="ec-logo"><img src="logo.png" alt="Elegant Cornicing™" class="ec-logo-img" style="filter:none;" /></a>
+    <a href="index.html" class="ec-logo"><img src="logo.png" alt="Elegant Cornicing™" class="ec-logo-img" /></a>
     <ul class="ec-nav-links">
       <li><a href="index.html">Home</a></li><li><a href="retailers.html">Retailers</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html" class="active">Branches</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li>
     </ul>
@@ -77,115 +81,15 @@
   </section>
 
   <section class="map-section">
-    <div class="map-inner">
+    <div class="map-outer">
       <div class="map-wrap">
-        <svg class="map-svg" viewBox="0 0 760 620" xmlns="http://www.w3.org/2000/svg">
-          <defs><filter id="sh"><feDropShadow dx="2" dy="5" stdDeviation="8" flood-color="rgba(0,0,0,0.13)"/></filter></defs>
-          <g filter="url(#sh)">
-            <!-- SOUTH AFRICA - correct geographic shape -->
-            <path fill="#E2F0D9" stroke="#4CAF23" stroke-width="2" stroke-linejoin="round" d="
-              M 68,165
-              L 78,148 L 92,133 L 108,120 L 126,109 L 145,100
-              L 165,93 L 186,88 L 207,85 L 228,83 L 250,82
-              L 272,82 L 294,83 L 316,85 L 338,88 L 360,92
-              L 381,97 L 401,103 L 420,110 L 437,118 L 452,128
-              L 466,139 L 474,152 L 479,141 L 487,131 L 498,123
-              L 511,118 L 524,116 L 537,117 L 549,121 L 559,128
-              L 566,137 L 570,148 L 571,160 L 568,172 L 562,183
-              L 553,192 L 560,199 L 570,204 L 582,207 L 594,207
-              L 606,205 L 616,199 L 624,191 L 629,181 L 631,170
-              L 630,159 L 626,149 L 637,148 L 649,150 L 660,156
-              L 668,165 L 673,176 L 674,188 L 671,200 L 664,211
-              L 654,220 L 642,226 L 629,229
-              L 638,242 L 648,258 L 655,275 L 658,293
-              L 657,311 L 652,328 L 643,344 L 650,355
-              L 657,368 L 661,383 L 661,399 L 657,414
-              L 648,427 L 636,438 L 622,446 L 607,450
-              L 591,450 L 576,447 L 562,440 L 560,453
-              L 554,465 L 545,475 L 533,483 L 519,487
-              L 505,489 L 491,487 L 478,482 L 466,473
-              L 456,461 L 448,473 L 437,483 L 423,490
-              L 408,494 L 393,495 L 379,492 L 365,486
-              L 354,477 L 345,465 L 339,452 L 335,460
-              L 327,471 L 315,480 L 301,486 L 286,488
-              L 272,487 L 258,482 L 246,473 L 238,462
-              L 230,449 L 216,456 L 201,460 L 186,461
-              L 171,458 L 158,451 L 146,441 L 138,428
-              L 133,414 L 131,400 L 133,386 L 138,373
-              L 121,365 L 105,354 L 92,340 L 82,324
-              L 76,306 L 73,288 L 74,270 L 79,253
-              L 87,237 L 98,222 L 108,210 L 95,203
-              L 84,194 L 75,182 Z
-            "/>
-            <!-- LESOTHO -->
-            <path fill="#C5D9B5" stroke="#4CAF23" stroke-width="1.2" d="M 430,370 L 443,362 L 456,364 L 463,374 L 460,386 L 447,392 L 434,388 L 427,378 Z"/>
-            <!-- ESWATINI -->
-            <path fill="#C5D9B5" stroke="#4CAF23" stroke-width="1.2" d="M 617,270 L 627,265 L 636,268 L 639,278 L 634,287 L 622,289 L 614,282 Z"/>
-          </g>
-          <!-- Province hints -->
-          <g stroke="#4CAF23" stroke-width="0.5" stroke-dasharray="4,5" fill="none" opacity="0.3">
-            <line x1="295" y1="82" x2="280" y2="290"/>
-            <line x1="280" y1="290" x2="190" y2="460"/>
-            <line x1="466" y1="139" x2="450" y2="290"/>
-            <line x1="450" y1="290" x2="345" y2="465"/>
-            <line x1="280" y1="290" x2="450" y2="290"/>
-            <line x1="450" y1="290" x2="629" y2="229"/>
-          </g>
-          <text x="290" y="290" font-family="'DM Sans',sans-serif" font-size="11" fill="#4CAF23" letter-spacing="0.15em" opacity="0.5" text-anchor="middle">SOUTH AFRICA</text>
-
-          <!-- PINS: positioned to match actual geography within this viewBox -->
-          <!-- Johannesburg: central-NE -->
-          <g class="branch-pin" id="pin-jhb" onclick="selectBranch('jhb')">
-            <circle class="po" cx="490" cy="255" r="16"/><circle class="pi" cx="490" cy="255" r="8"/>
-            <text class="pl" x="504" y="259">Johannesburg</text>
-          </g>
-          <!-- Polokwane: north -->
-          <g class="branch-pin" id="pin-plk" onclick="selectBranch('plk')">
-            <circle class="po" cx="520" cy="130" r="16"/><circle class="pi" cx="520" cy="130" r="8"/>
-            <text class="pl" x="534" y="134">Polokwane</text>
-          </g>
-          <!-- Nelspruit: far NE -->
-          <g class="branch-pin" id="pin-nel" onclick="selectBranch('nel')">
-            <circle class="po" cx="600" cy="215" r="16"/><circle class="pi" cx="600" cy="215" r="8"/>
-            <text class="pl" x="614" y="219">Nelspruit</text>
-          </g>
-          <!-- Durban: east coast -->
-          <g class="branch-pin" id="pin-dbn" onclick="selectBranch('dbn')">
-            <circle class="po" cx="600" cy="380" r="16"/><circle class="pi" cx="600" cy="380" r="8"/>
-            <text class="pl" x="614" y="384">Durban</text>
-          </g>
-          <!-- Bloemfontein: centre -->
-          <g class="branch-pin" id="pin-bfn" onclick="selectBranch('bfn')">
-            <circle class="po" cx="390" cy="350" r="16"/><circle class="pi" cx="390" cy="350" r="8"/>
-            <text class="pl" x="404" y="354">Bloemfontein</text>
-          </g>
-          <!-- East London: SE coast -->
-          <g class="branch-pin" id="pin-eln" onclick="selectBranch('eln')">
-            <circle class="po" cx="488" cy="463" r="16"/><circle class="pi" cx="488" cy="463" r="8"/>
-            <text class="pl" x="502" y="467">East London</text>
-          </g>
-          <!-- Port Elizabeth: south coast -->
-          <g class="branch-pin" id="pin-pe" onclick="selectBranch('pe')">
-            <circle class="po" cx="400" cy="485" r="16"/><circle class="pi" cx="400" cy="485" r="8"/>
-            <text class="pl" x="414" y="489">Port Elizabeth</text>
-          </g>
-          <!-- George: SW coast -->
-          <g class="branch-pin" id="pin-geo" onclick="selectBranch('geo')">
-            <circle class="po" cx="270" cy="483" r="16"/><circle class="pi" cx="270" cy="483" r="8"/>
-            <text class="pl" x="284" y="487">George</text>
-          </g>
-          <!-- Cape Town: far SW -->
-          <g class="branch-pin" id="pin-cpt" onclick="selectBranch('cpt')">
-            <circle class="po" cx="130" cy="455" r="16"/><circle class="pi" cx="130" cy="455" r="8"/>
-            <text class="pl" x="144" y="459">Cape Town</text>
-          </g>
-        </svg>
+        <div id="sa-map"></div>
       </div>
 
       <div class="map-panel">
         <div class="panel-default" id="panel-default">
           <div class="panel-default-title">Our Branch Network</div>
-          <div class="panel-default-body">We have 9 branches and distributors across Southern Africa. Tap any green pin on the map to see branch details.</div>
+          <div class="panel-default-body">We have 9 branches and distributors across Southern Africa. Click any green pin on the map to see branch details.</div>
           <div class="panel-hint"><i class="ti ti-map-pin"></i> Click a pin to explore</div>
         </div>
         <div class="bdp" id="branch-detail">
@@ -238,36 +142,98 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    const B={
-      jhb:{type:'Head Office',city:'Johannesburg',province:'Gauteng, South Africa',btype:'Head Office & Manufacturing',coverage:'Gauteng Province & surrounds'},
-      cpt:{type:'Regional Branch',city:'Cape Town',province:'Western Cape, South Africa',btype:'Full Distribution Centre',coverage:'Western Cape Province'},
-      dbn:{type:'Regional Branch',city:'Durban',province:'KwaZulu-Natal, South Africa',btype:'Regional Distribution',coverage:'KwaZulu-Natal coastline & inland'},
-      pe:{type:'Regional Branch',city:'Port Elizabeth',province:'Eastern Cape, South Africa',btype:'Regional Distribution',coverage:'Eastern Cape seaboard'},
-      plk:{type:'Regional Branch',city:'Polokwane',province:'Limpopo, South Africa',btype:'Regional Distribution',coverage:'Limpopo & Northern territories'},
-      nel:{type:'Regional Branch',city:'Nelspruit',province:'Mpumalanga, South Africa',btype:'Regional Distribution',coverage:'Mpumalanga & Eastern Lowveld'},
-      bfn:{type:'Distributor',city:'Bloemfontein',province:'Free State, South Africa',btype:'Authorised Distributor',coverage:'Free State Province'},
-      eln:{type:'Distributor',city:'East London',province:'Eastern Cape, South Africa',btype:'Authorised Distributor',coverage:'Eastern Cape coast'},
-      geo:{type:'Distributor',city:'George',province:'Western Cape, South Africa',btype:'Authorised Distributor',coverage:'Garden Route & surrounds'},
+    const branches = {
+      jhb:{lat:-26.2041,lng:28.0473,type:'Head Office',city:'Johannesburg',province:'Gauteng, South Africa',btype:'Head Office & Manufacturing',coverage:'Gauteng Province & surrounds'},
+      cpt:{lat:-33.9249,lng:18.4241,type:'Regional Branch',city:'Cape Town',province:'Western Cape, South Africa',btype:'Full Distribution Centre',coverage:'Western Cape Province'},
+      dbn:{lat:-29.8587,lng:31.0218,type:'Regional Branch',city:'Durban',province:'KwaZulu-Natal, South Africa',btype:'Regional Distribution',coverage:'KwaZulu-Natal coastline & inland'},
+      pe: {lat:-33.9608,lng:25.6022,type:'Regional Branch',city:'Port Elizabeth',province:'Eastern Cape, South Africa',btype:'Regional Distribution',coverage:'Eastern Cape seaboard'},
+      plk:{lat:-23.9045,lng:29.4689,type:'Regional Branch',city:'Polokwane',province:'Limpopo, South Africa',btype:'Regional Distribution',coverage:'Limpopo & Northern territories'},
+      nel:{lat:-25.4753,lng:30.9694,type:'Regional Branch',city:'Nelspruit',province:'Mpumalanga, South Africa',btype:'Regional Distribution',coverage:'Mpumalanga & Eastern Lowveld'},
+      bfn:{lat:-29.1210,lng:26.2140,type:'Distributor',city:'Bloemfontein',province:'Free State, South Africa',btype:'Authorised Distributor',coverage:'Free State Province'},
+      eln:{lat:-32.9975,lng:27.9116,type:'Distributor',city:'East London',province:'Eastern Cape, South Africa',btype:'Authorised Distributor',coverage:'Eastern Cape coast'},
+      geo:{lat:-33.9646,lng:22.4617,type:'Distributor',city:'George',province:'Western Cape, South Africa',btype:'Authorised Distributor',coverage:'Garden Route & surrounds'},
     };
-    let active=null;
-    function selectBranch(id){
-      if(active){document.getElementById('pin-'+active)?.classList.remove('active');document.getElementById('card-'+active)?.classList.remove('active');}
-      active=id;const b=B[id];
-      document.getElementById('pin-'+id)?.classList.add('active');
-      document.getElementById('card-'+id)?.classList.add('active');
-      document.getElementById('detail-type').textContent=b.type;
-      document.getElementById('detail-city').textContent=b.city;
-      document.getElementById('detail-province').textContent=b.province;
-      document.getElementById('detail-btype').textContent=b.btype;
-      document.getElementById('detail-coverage').textContent=b.coverage;
-      document.getElementById('panel-default').style.display='none';
+
+    // Custom green pin icon
+    const greenIcon = L.divIcon({
+      className:'',
+      html:`<div style="width:18px;height:18px;background:#4CAF23;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);"></div>`,
+      iconSize:[18,18],
+      iconAnchor:[9,9],
+      popupAnchor:[0,-12]
+    });
+
+    const activeIcon = L.divIcon({
+      className:'',
+      html:`<div style="width:22px;height:22px;background:#fff;border-radius:50%;border:3px solid #4CAF23;box-shadow:0 2px 8px rgba(76,175,35,0.5);"></div>`,
+      iconSize:[22,22],
+      iconAnchor:[11,11],
+      popupAnchor:[0,-14]
+    });
+
+    // Init map centred on SA
+    const map = L.map('sa-map', {
+      center: [-28.8, 25.0],
+      zoom: 6,
+      zoomControl: true,
+      scrollWheelZoom: false,
+      attributionControl: true
+    });
+
+    // OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 10,
+      minZoom: 5
+    }).addTo(map);
+
+    let active = null;
+    const markers = {};
+
+    // Add markers
+    Object.entries(branches).forEach(([id, b]) => {
+      const marker = L.marker([b.lat, b.lng], {icon: greenIcon}).addTo(map);
+      markers[id] = marker;
+      marker.on('click', () => selectBranch(id));
+    });
+
+    function selectBranch(id) {
+      // Reset previous
+      if (active) {
+        markers[active].setIcon(greenIcon);
+        document.getElementById('card-' + active)?.classList.remove('active');
+      }
+      active = id;
+      const b = branches[id];
+
+      markers[id].setIcon(activeIcon);
+      map.setView([b.lat, b.lng], 7, {animate: true});
+      document.getElementById('card-' + id)?.classList.add('active');
+
+      // Populate panel
+      document.getElementById('detail-type').textContent = b.type;
+      document.getElementById('detail-city').textContent = b.city;
+      document.getElementById('detail-province').textContent = b.province;
+      document.getElementById('detail-btype').textContent = b.btype;
+      document.getElementById('detail-coverage').textContent = b.coverage;
+      document.getElementById('panel-default').style.display = 'none';
       document.getElementById('branch-detail').classList.add('visible');
-      if(window.innerWidth<900)document.getElementById('branch-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+
+      if (window.innerWidth < 900) {
+        document.getElementById('branch-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+      }
     }
-    function closePanel(){
-      if(active){document.getElementById('pin-'+active)?.classList.remove('active');document.getElementById('card-'+active)?.classList.remove('active');active=null;}
-      document.getElementById('panel-default').style.display='block';
+
+    function closePanel() {
+      if (active) {
+        markers[active].setIcon(greenIcon);
+        document.getElementById('card-' + active)?.classList.remove('active');
+        active = null;
+      }
+      map.setView([-28.8, 25.0], 6, {animate: true});
+      document.getElementById('panel-default').style.display = 'block';
       document.getElementById('branch-detail').classList.remove('visible');
     }
   </script>
