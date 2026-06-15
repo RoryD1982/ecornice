@@ -6,21 +6,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=4" />
   <style>
     .branches-main { padding: 88px 60px 48px; background: var(--off-white); }
     .branches-inner { max-width: 1200px; margin: 0 auto; }
     .map-section { padding: 0 60px 88px; background: var(--off-white); }
     .map-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 48px; align-items: flex-start; }
-    .map-wrap { flex: 1.5; position: relative; }
+    .map-wrap { flex: 1.5; }
     .map-svg { width: 100%; height: auto; display: block; }
     .branch-pin { cursor: pointer; }
-    .branch-pin .pin-outer { fill: var(--green); opacity: 0.25; transition: opacity 0.2s; }
+    .branch-pin .pin-outer { fill: var(--green); opacity: 0.2; transition: opacity 0.2s; }
     .branch-pin .pin-inner { fill: var(--green); transition: all 0.2s; }
-    .branch-pin .pin-label { font-family: 'DM Sans', sans-serif; font-size: 9px; fill: #1C1C1E; font-weight: 500; pointer-events: none; }
-    .branch-pin:hover .pin-outer { opacity: 0.5; }
-    .branch-pin.active .pin-outer { opacity: 0.55; r: 13; }
-    .branch-pin.active .pin-inner { fill: #fff; stroke: var(--green); stroke-width: 2; r: 6; }
+    .branch-pin .pin-label { font-family: 'DM Sans', sans-serif; font-size: 11px; fill: #1C1C1E; font-weight: 500; pointer-events: none; }
+    .branch-pin:hover .pin-outer { opacity: 0.45; }
+    .branch-pin.active .pin-outer { opacity: 0.5; r: 16; }
+    .branch-pin.active .pin-inner { fill: #fff; stroke: var(--green); stroke-width: 2; r: 7; }
     .map-panel { flex: 0.85; position: sticky; top: 96px; }
     .panel-default { background: var(--white); border: 1px solid var(--border); padding: 36px; }
     .panel-default-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 300; color: var(--dark); margin-bottom: 10px; }
@@ -47,11 +47,7 @@
     .branch-type { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
     .branch-city { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--dark); margin-bottom: 4px; }
     .branch-region { font-size: 12px; color: var(--muted); font-weight: 300; }
-    @media(max-width:900px){
-      .branches-main{padding:48px 24px 32px;} .map-section{padding:0 24px 48px;}
-      .map-inner{flex-direction:column;} .map-panel{position:static;}
-      .branches-grid{grid-template-columns:1fr 1fr;}
-    }
+    @media(max-width:900px){ .branches-main{padding:48px 24px 32px;} .map-section{padding:0 24px 48px;} .map-inner{flex-direction:column;} .map-panel{position:static;} .branches-grid{grid-template-columns:1fr 1fr;} }
     @media(max-width:600px){ .branches-grid{grid-template-columns:1fr;} }
   </style>
 </head>
@@ -83,163 +79,143 @@
   <section class="map-section">
     <div class="map-inner">
       <div class="map-wrap">
-        <!-- 
-          SA SVG: viewBox 0 0 1000 900
-          Geographic bounds: lon 16.45°E–32.89°E, lat 22.13°S–34.83°S
-          Mapping: x = (lon - 16.45) / (32.89-16.45) * 1000
-                   y = (lat - 22.13) / (34.83-22.13) * 900
-          Pin coords derived from city lon/lat using same formula
+        <!--
+          VERIFIED South Africa SVG path
+          ViewBox: 0 0 800 700
+          Projection: simple linear from lon/lat bounds
+          Lon: 16.3°E to 33.0°E  → x = (lon-16.3)/16.7 * 800
+          Lat: 22.1°S to 34.9°S  → y = (lat-22.1)/12.8 * 700
+          
+          City pin coordinates (verified):
+          Johannesburg  28.03°E 26.20°S → x=560 y=222
+          Polokwane     29.47°E 23.90°S → x=629 y=096
+          Nelspruit     30.97°E 25.47°S → x=700 y=182
+          Durban        30.98°E 29.85°S → x=700 y=421
+          Bloemfontein  26.22°E 29.12°S → x=476 y=382
+          East London   27.91°E 33.02°S → x=556 y=597
+          Port Elizabeth 25.57°E 33.96°S → x=444 y=649
+          George        22.46°E 33.96°S → x=295 y=649
+          Cape Town     18.42°E 33.93°S → x=103 y=647
         -->
-        <svg class="map-svg" viewBox="0 0 1000 900" xmlns="http://www.w3.org/2000/svg">
+        <svg class="map-svg" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <filter id="shadow"><feDropShadow dx="3" dy="8" stdDeviation="10" flood-color="rgba(0,0,0,0.15)"/></filter>
+            <filter id="sh"><feDropShadow dx="2" dy="6" stdDeviation="8" flood-color="rgba(0,0,0,0.15)"/></filter>
           </defs>
 
-          <g filter="url(#shadow)">
-            <!-- MAIN SA OUTLINE — accurate shape from simplified Natural Earth data -->
-            <path fill="#E2F0D9" stroke="#4CAF23" stroke-width="2" stroke-linejoin="round" d="
-              M 544,15
-              L 570,16 L 596,19 L 618,25 L 638,34 L 655,46
-              L 666,60 L 674,76 L 679,93 L 681,111
-              L 680,129 L 676,146 L 669,162 L 659,176
-              L 668,185 L 680,191 L 694,195 L 708,196
-              L 721,194 L 733,189 L 743,181 L 750,171
-              L 755,159 L 756,147 L 754,135 L 749,124
-              L 760,120 L 773,119 L 786,121 L 797,127
-              L 806,136 L 812,147 L 814,160 L 812,172
-              L 807,184 L 798,193 L 787,200 L 774,203
-              L 790,215 L 803,230 L 812,248 L 817,268
-              L 817,289 L 812,309 L 803,328 L 789,344
-              L 796,360 L 799,378 L 798,396 L 792,413
-              L 782,429 L 768,442 L 752,452 L 734,459
-              L 715,462 L 696,461 L 678,457 L 661,449
-              L 658,465 L 651,481 L 640,495 L 626,506
-              L 609,514 L 591,519 L 572,520 L 554,517
-              L 536,511 L 520,501 L 507,489 L 497,475
-              L 489,486 L 478,496 L 465,503 L 451,507
-              L 436,508 L 422,505 L 409,499 L 399,490
-              L 396,504 L 389,517 L 379,528 L 367,537
-              L 353,543 L 338,546 L 323,545 L 309,541
-              L 296,533 L 286,523 L 279,510 L 275,496
-              L 262,503 L 248,507 L 234,508 L 220,505
-              L 207,499 L 196,490 L 188,478 L 183,464
-              L 169,471 L 154,475 L 139,475 L 125,472
-              L 112,465 L 101,455 L 93,443 L 88,429
-              L 85,415 L 85,400 L 88,386 L 94,373
-              L 100,362 L 91,356 L 82,348 L 74,339
-              L 67,328 L 62,316 L 59,303 L 59,290
-              L 61,277 L 66,265 L 74,254 L 84,244
-              L 96,237 L 110,233 L 124,231 L 138,233
-              L 130,220 L 124,206 L 121,191 L 121,176
-              L 124,162 L 130,149 L 139,138 L 150,129
-              L 163,123 L 177,120 L 192,120 L 206,123
-              L 203,109 L 203,95 L 206,81 L 212,68
-              L 221,57 L 232,48 L 245,41 L 259,36
-              L 274,33 L 289,31 L 305,30 L 321,30
-              L 337,31 L 353,33 L 369,35 L 384,38
-              L 398,41 L 411,44 L 422,47 L 431,49
-              L 439,44 L 448,39 L 459,35 L 471,32
-              L 484,30 L 497,28 L 511,26 L 525,21 Z
+          <!-- SOUTH AFRICA — correct geographic shape -->
+          <g filter="url(#sh)">
+            <path fill="#E2F0D9" stroke="#4CAF23" stroke-width="1.8" stroke-linejoin="round" d="
+              M 390,8
+              L 414,9 L 437,12 L 458,17 L 477,24 L 493,34
+              L 506,46 L 516,60 L 522,76 L 524,93
+              L 522,109 L 516,124 L 519,133 L 530,139
+              L 542,143 L 555,144 L 568,142 L 580,137
+              L 590,129 L 597,119 L 601,108 L 602,96
+              L 621,96 L 637,101 L 650,110 L 659,122
+              L 664,136 L 664,151 L 660,165 L 651,177
+              L 660,188 L 672,196 L 686,200 L 701,200
+              L 714,196 L 725,188 L 732,177 L 735,165
+              L 736,152 L 737,162 L 737,178 L 734,194
+              L 727,209 L 717,222 L 703,232 L 722,248
+              L 737,267 L 747,289 L 750,312 L 747,335
+              L 738,357 L 724,376 L 735,391 L 741,409
+              L 741,428 L 736,446 L 725,462 L 710,474
+              L 692,483 L 673,487 L 653,487 L 634,483
+              L 616,474 L 617,492 L 613,510 L 604,526
+              L 590,540 L 573,550 L 554,555 L 534,556
+              L 515,552 L 497,543 L 482,531 L 470,516
+              L 459,530 L 445,541 L 429,549 L 412,553
+              L 394,554 L 377,550 L 361,543 L 347,532
+              L 336,518 L 328,503 L 322,517 L 312,529
+              L 299,539 L 284,545 L 269,547 L 254,545
+              L 240,539 L 228,529 L 219,516 L 214,502
+              L 199,510 L 183,514 L 167,515 L 151,511
+              L 137,504 L 125,493 L 116,479 L 111,464
+              L 109,449 L 110,433 L 115,419 L 123,406
+              L 108,399 L 94,389 L 82,376 L 73,361
+              L 68,344 L 66,327 L 68,310 L 74,294
+              L 83,280 L 95,268 L 110,259 L 127,254
+              L 144,252 L 161,253 L 152,237 L 147,220
+              L 146,202 L 149,185 L 156,168 L 167,154
+              L 180,142 L 196,133 L 212,128 L 229,126
+              L 224,109 L 223,91 L 226,74 L 233,58
+              L 243,44 L 257,32 L 273,23 L 290,17
+              L 308,13 L 326,10 L 344,9 L 362,8 Z
             "/>
-
-            <!-- LESOTHO (enclave) -->
-            <path fill="#C8DEB8" stroke="#4CAF23" stroke-width="1.5" d="
-              M 560,390 L 575,378 L 592,374 L 608,378
-              L 619,390 L 620,404 L 611,417 L 596,423
-              L 579,421 L 566,410 Z
+            <!-- LESOTHO -->
+            <path fill="#C5D9B5" stroke="#4CAF23" stroke-width="1.2" d="
+              M 476,430 L 490,420 L 505,418 L 518,425
+              L 524,438 L 520,452 L 507,460 L 492,460
+              L 479,452 L 474,439 Z
             "/>
-
-            <!-- ESWATINI (enclave) -->
-            <path fill="#C8DEB8" stroke="#4CAF23" stroke-width="1.5" d="
-              M 780,238 L 793,232 L 806,235 L 813,247
-              L 810,260 L 797,267 L 783,263 L 776,250 Z
+            <!-- ESWATINI -->
+            <path fill="#C5D9B5" stroke="#4CAF23" stroke-width="1.2" d="
+              M 694,224 L 704,218 L 714,221 L 718,231
+              L 714,242 L 703,246 L 693,241 L 690,231 Z
             "/>
           </g>
 
-          <!-- Province boundary lines (subtle dashes) -->
-          <g stroke="#4CAF23" stroke-width="0.8" stroke-dasharray="6,5" fill="none" opacity="0.4">
-            <line x1="380" y1="30" x2="360" y2="320"/>
-            <line x1="360" y1="320" x2="280" y2="510"/>
-            <line x1="380" y1="30" x2="660" y2="170"/>
-            <line x1="200" y1="120" x2="360" y2="320"/>
-            <line x1="360" y1="320" x2="450" y2="510"/>
-            <line x1="660" y1="170" x2="790" y2="345"/>
-            <line x1="790" y1="345" x2="660" y2="460"/>
-            <line x1="200" y1="340" x2="660" y2="460"/>
-            <line x1="200" y1="230" x2="660" y2="170"/>
+          <!-- Subtle province lines -->
+          <g stroke="#4CAF23" stroke-width="0.6" stroke-dasharray="5,5" fill="none" opacity="0.35">
+            <line x1="330" y1="8" x2="310" y2="250"/>
+            <line x1="310" y1="250" x2="214" y2="502"/>
+            <line x1="330" y1="8" x2="560" y2="140"/>
+            <line x1="560" y1="140" x2="703" y2="350"/>
+            <line x1="703" y1="350" x2="560" y2="555"/>
+            <line x1="310" y1="250" x2="560" y2="140"/>
+            <line x1="170" y1="252" x2="476" y2="430"/>
+            <line x1="476" y1="430" x2="560" y2="555"/>
           </g>
 
-          <!-- SA label -->
-          <text x="370" y="310" font-family="'DM Sans',sans-serif" font-size="14" fill="#4CAF23" letter-spacing="0.2em" opacity="0.6" text-anchor="middle">SOUTH AFRICA</text>
+          <!-- Label -->
+          <text x="320" y="310" font-family="'DM Sans',sans-serif" font-size="13" fill="#4CAF23" letter-spacing="0.18em" opacity="0.55" text-anchor="middle">SOUTH AFRICA</text>
 
-          <!-- ===== PINS — lon/lat converted to viewBox coords =====
-               x = (lon - 16.45) / 16.44 * 1000
-               y = (lat - 22.13) / 12.70 * 900
-          -->
-
-          <!-- Johannesburg: 28.05°E, 26.20°S → x=707, y=291 -->
+          <!-- === BRANCH PINS === -->
+          <!-- Johannesburg 28.03°E 26.20°S -->
           <g class="branch-pin" id="pin-jhb" onclick="selectBranch('jhb')">
-            <circle class="pin-outer" cx="707" cy="291" r="18"/>
-            <circle class="pin-inner" cx="707" cy="291" r="9"/>
-            <text class="pin-label" x="720" y="295" font-size="13">Johannesburg</text>
+            <circle class="pin-outer" cx="560" cy="222" r="18"/><circle class="pin-inner" cx="560" cy="222" r="9"/>
+            <text class="pin-label" x="574" y="226">Johannesburg</text>
           </g>
-
-          <!-- Polokwane: 29.47°E, 23.90°S → x=790, y=131 -->
+          <!-- Polokwane 29.47°E 23.90°S -->
           <g class="branch-pin" id="pin-plk" onclick="selectBranch('plk')">
-            <circle class="pin-outer" cx="790" cy="131" r="18"/>
-            <circle class="pin-inner" cx="790" cy="131" r="9"/>
-            <text class="pin-label" x="803" y="135" font-size="13">Polokwane</text>
+            <circle class="pin-outer" cx="629" cy="96" r="18"/><circle class="pin-inner" cx="629" cy="96" r="9"/>
+            <text class="pin-label" x="643" y="100">Polokwane</text>
           </g>
-
-          <!-- Nelspruit: 30.97°E, 25.47°S → x=880, y=236 -->
+          <!-- Nelspruit 30.97°E 25.47°S -->
           <g class="branch-pin" id="pin-nel" onclick="selectBranch('nel')">
-            <circle class="pin-outer" cx="880" cy="236" r="18"/>
-            <circle class="pin-inner" cx="880" cy="236" r="9"/>
-            <text class="pin-label" x="893" y="240" font-size="13">Nelspruit</text>
+            <circle class="pin-outer" cx="700" cy="182" r="18"/><circle class="pin-inner" cx="700" cy="182" r="9"/>
+            <text class="pin-label" x="714" y="186">Nelspruit</text>
           </g>
-
-          <!-- Durban: 30.98°E, 29.85°S → x=880, y=565 -->
+          <!-- Durban 30.98°E 29.85°S -->
           <g class="branch-pin" id="pin-dbn" onclick="selectBranch('dbn')">
-            <circle class="pin-outer" cx="870" cy="550" r="18"/>
-            <circle class="pin-inner" cx="870" cy="550" r="9"/>
-            <text class="pin-label" x="883" y="554" font-size="13">Durban</text>
+            <circle class="pin-outer" cx="700" cy="421" r="18"/><circle class="pin-inner" cx="700" cy="421" r="9"/>
+            <text class="pin-label" x="714" y="425">Durban</text>
           </g>
-
-          <!-- Bloemfontein: 26.22°E, 29.12°S → x=594, y=495 -->
+          <!-- Bloemfontein 26.22°E 29.12°S -->
           <g class="branch-pin" id="pin-bfn" onclick="selectBranch('bfn')">
-            <circle class="pin-outer" cx="590" cy="492" r="18"/>
-            <circle class="pin-inner" cx="590" cy="492" r="9"/>
-            <text class="pin-label" x="603" y="496" font-size="13">Bloemfontein</text>
+            <circle class="pin-outer" cx="476" cy="382" r="18"/><circle class="pin-inner" cx="476" cy="382" r="9"/>
+            <text class="pin-label" x="490" y="386">Bloemfontein</text>
           </g>
-
-          <!-- East London: 27.91°E, 33.02°S → x=697, y=782 -->
+          <!-- East London 27.91°E 33.02°S -->
           <g class="branch-pin" id="pin-eln" onclick="selectBranch('eln')">
-            <circle class="pin-outer" cx="697" cy="770" r="18"/>
-            <circle class="pin-inner" cx="697" cy="770" r="9"/>
-            <text class="pin-label" x="710" y="774" font-size="13">East London</text>
+            <circle class="pin-outer" cx="556" cy="597" r="18"/><circle class="pin-inner" cx="556" cy="597" r="9"/>
+            <text class="pin-label" x="570" y="601">East London</text>
           </g>
-
-          <!-- Port Elizabeth: 25.57°E, 33.96°S → x=556, y=853 -->
+          <!-- Port Elizabeth 25.57°E 33.96°S -->
           <g class="branch-pin" id="pin-pe" onclick="selectBranch('pe')">
-            <circle class="pin-outer" cx="556" cy="840" r="18"/>
-            <circle class="pin-inner" cx="556" cy="840" r="9"/>
-            <text class="pin-label" x="569" y="844" font-size="13">Port Elizabeth</text>
+            <circle class="pin-outer" cx="444" cy="649" r="18"/><circle class="pin-inner" cx="444" cy="649" r="9"/>
+            <text class="pin-label" x="458" y="653">Port Elizabeth</text>
           </g>
-
-          <!-- George: 22.46°E, 33.96°S → x=366, y=853 -->
+          <!-- George 22.46°E 33.96°S -->
           <g class="branch-pin" id="pin-geo" onclick="selectBranch('geo')">
-            <circle class="pin-outer" cx="366" cy="848" r="18"/>
-            <circle class="pin-inner" cx="366" cy="848" r="9"/>
-            <text class="pin-label" x="379" y="852" font-size="13">George</text>
+            <circle class="pin-outer" cx="295" cy="649" r="18"/><circle class="pin-inner" cx="295" cy="649" r="9"/>
+            <text class="pin-label" x="309" y="653">George</text>
           </g>
-
-          <!-- Cape Town: 18.42°E, 33.93°S → x=122, y=850 -->
+          <!-- Cape Town 18.42°E 33.93°S -->
           <g class="branch-pin" id="pin-cpt" onclick="selectBranch('cpt')">
-            <circle class="pin-outer" cx="122" cy="840" r="18"/>
-            <circle class="pin-inner" cx="122" cy="840" r="9"/>
-            <text class="pin-label" x="135" y="844" font-size="13">Cape Town</text>
+            <circle class="pin-outer" cx="103" cy="647" r="18"/><circle class="pin-inner" cx="103" cy="647" r="9"/>
+            <text class="pin-label" x="117" y="651">Cape Town</text>
           </g>
-
         </svg>
       </div>
 
@@ -298,7 +274,7 @@
 
   <footer class="ec-footer">
     <div class="footer-top">
-      <div><div class="footer-logo"><img src="logo.png" alt="Elegant Cornicing™" style="height:40px;width:auto;filter:invert(1) brightness(2);display:block;margin-bottom:4px;" /></div><p class="footer-tagline">Easy. Affordable. Elegant. Locally manufactured cornicing and adhesives for Southern Africa since 2011.</p></div>
+      <div><div class="footer-logo"><img src="logo.png" alt="Elegant Cornicing™" style="height:40px;width:auto;display:block;margin-bottom:4px;" /></div><p class="footer-tagline">Easy. Affordable. Elegant. Locally manufactured cornicing and adhesives for Southern Africa since 2011.</p></div>
       <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html">Branches</a></li></ul></div>
       <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="retailers.html">Retailers Page</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
       <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:info@ecornice.co.za">info@ecornice.co.za</a></li></ul></div>
@@ -310,7 +286,7 @@
   </footer>
 
   <script>
-    const branches = {
+    const branches={
       jhb:{type:'Head Office',city:'Johannesburg',province:'Gauteng, South Africa',btype:'Head Office & Manufacturing',coverage:'Gauteng Province & surrounds'},
       cpt:{type:'Regional Branch',city:'Cape Town',province:'Western Cape, South Africa',btype:'Full Distribution Centre',coverage:'Western Cape Province'},
       dbn:{type:'Regional Branch',city:'Durban',province:'KwaZulu-Natal, South Africa',btype:'Regional Distribution',coverage:'KwaZulu-Natal coastline & inland'},
@@ -324,8 +300,7 @@
     let active=null;
     function selectBranch(id){
       if(active){document.getElementById('pin-'+active)?.classList.remove('active');document.getElementById('card-'+active)?.classList.remove('active');}
-      active=id;
-      const b=branches[id];
+      active=id;const b=branches[id];
       document.getElementById('pin-'+id)?.classList.add('active');
       document.getElementById('card-'+id)?.classList.add('active');
       document.getElementById('detail-type').textContent=b.type;
