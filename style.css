@@ -253,7 +253,6 @@ body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(-
   width: auto;
   display: block;
   filter: none;
-  mix-blend-mode: multiply;
   transition: opacity 0.2s;
 }
 .ec-logo-img:hover { opacity: 0.85; }
