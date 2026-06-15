@@ -18,7 +18,8 @@ body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(-
 
 /* ── NAV ── */
 .ec-nav {
-  background: var(--dark);
+  background: #FFFFFF;
+  border-bottom: 1px solid #E8E4DF;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,7 +42,7 @@ body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(-
 .ec-logo span { color: var(--green); }
 .ec-nav-links { display: flex; gap: 32px; list-style: none; }
 .ec-nav-links li a {
-  color: var(--stone);
+  color: var(--dark);
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -251,7 +252,8 @@ body { font-family: 'DM Sans', sans-serif; color: var(--dark); background: var(-
   height: 48px;
   width: auto;
   display: block;
-  filter: invert(1) brightness(2);
+  filter: none;
+  mix-blend-mode: multiply;
   transition: opacity 0.2s;
 }
 .ec-logo-img:hover { opacity: 0.85; }
