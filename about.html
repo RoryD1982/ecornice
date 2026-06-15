@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Elegant Cornicing™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .about-story { padding: 88px 60px; background: var(--white); }
+    .about-story-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 88px; align-items: flex-start; }
+    .about-story-left { flex: 1.1; }
+    .about-story-right { flex: 1; }
+    .about-body { font-size: 15px; color: var(--subtle); line-height: 1.85; font-weight: 300; margin-bottom: 20px; }
+    .about-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 2px; margin-top: 48px; }
+    .about-stat { background: var(--dark); padding: 32px 28px; }
+    .about-stat-num { font-family: 'Cormorant Garamond', serif; font-size: 44px; font-weight: 300; color: var(--green); line-height: 1; }
+    .about-stat-lbl { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); margin-top: 8px; }
+    .about-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+    .about-values { padding: 88px 60px; background: var(--off-white); }
+    .values-grid { max-width: 1200px; margin: 56px auto 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .value-card { background: var(--white); padding: 40px 36px; border-top: 3px solid var(--green); }
+    .value-icon { font-size: 28px; color: var(--green); margin-bottom: 20px; }
+    .value-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--dark); margin-bottom: 14px; }
+    .value-body { font-size: 14px; color: var(--muted); line-height: 1.8; font-weight: 300; }
+    .about-mfg { padding: 88px 60px; background: var(--dark); }
+    .about-mfg-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 88px; align-items: center; }
+    .about-mfg-left { flex: 1; }
+    .about-mfg-heading { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; color: var(--off-white); line-height: 1.2; margin-bottom: 20px; }
+    .about-mfg-body { font-size: 14px; color: var(--stone); line-height: 1.85; font-weight: 300; margin-bottom: 16px; }
+    .about-mfg-right { flex: 1; }
+    .mfg-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    @media(max-width:900px){
+      .about-story { padding: 48px 24px; }
+      .about-story-inner, .about-mfg-inner { flex-direction: column; gap: 40px; }
+      .about-values { padding: 48px 24px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .about-mfg { padding: 48px 24px; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="ec-nav">
+    <a href="index.html" class="ec-logo">Elegant <span>Cornicing</span>™</a>
+    <ul class="ec-nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="retailers.html">Retailers</a></li><li><a href="products.html">Products</a></li><li><a href="about.html" class="active">About Us</a></li><li><a href="branches.html">Branches</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-inner">
+      <p class="page-hero-eyebrow">Our Story</p>
+      <h1 class="page-hero-title">About<br><em style="font-style:italic;color:var(--green)">Elegant Cornicing</em></h1>
+      <p class="page-hero-sub">A leading manufacturer and distributor of polystyrene cornices and hardware products across the Southern African market since 2011.</p>
+    </div>
+  </div>
+
+  <section class="about-story">
+    <div class="about-story-inner">
+      <div class="about-story-left">
+        <p class="eyebrow">Our Journey</p>
+        <div class="divider-green"></div>
+        <h2 class="section-heading" style="margin-bottom:28px;">From One Client<br>to Thousands of Stores</h2>
+        <p class="about-body">Elegant Cornicing opened its doors for trading in 2011, winning over its very first customers in the retail trade industry — including its first major National Chain Store. The business has grown exponentially since then and our product offering can now be found in thousands of retail stores across Southern Africa.</p>
+        <p class="about-body">The key reason for our success has been the ability to consistently supply high quality products at affordable prices. As the business continues to grow, we expanded our manufacturing and warehousing facility to over 3000㎡ in 2016, with 9 branches and distributors throughout Southern Africa.</p>
+        <p class="about-body">The company is extremely passionate about offering affordable and elegant products, allowing the consumer to truly transform their house into a home. Through our ongoing innovative nature, we always try to be first to market with new ideas and designs — hence there are always patents pending so we can offer our clients new and exciting products.</p>
+        <p class="about-body">Additional products imported from Europe and China make up the balance of the Elegant Range.</p>
+      </div>
+      <div class="about-story-right">
+        <img class="about-img" src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&auto=format&fit=crop&q=80" alt="Elegant interior ceiling detail" />
+        <div class="about-stats">
+          <div class="about-stat"><div class="about-stat-num">2011</div><div class="about-stat-lbl">Founded</div></div>
+          <div class="about-stat"><div class="about-stat-num">9+</div><div class="about-stat-lbl">Branches</div></div>
+          <div class="about-stat"><div class="about-stat-num">3000㎡</div><div class="about-stat-lbl">Facility</div></div>
+          <div class="about-stat"><div class="about-stat-num">1000s</div><div class="about-stat-lbl">Retail Stores</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-values">
+    <div class="section-wrap">
+      <p class="eyebrow">What Drives Us</p>
+      <div class="divider-green"></div>
+      <h2 class="section-heading">Our Core Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon"><i class="ti ti-award" aria-hidden="true"></i></div>
+        <div class="value-title">Quality First</div>
+        <div class="value-body">Every cornice we produce meets exacting standards. Our cutting-edge automated facility ensures consistency in every batch, every time.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="ti ti-coin" aria-hidden="true"></i></div>
+        <div class="value-title">Affordable Excellence</div>
+        <div class="value-body">We believe premium finishing shouldn't cost a premium. Local manufacturing keeps our prices competitive without compromising quality.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="ti ti-bulb" aria-hidden="true"></i></div>
+        <div class="value-title">Continuous Innovation</div>
+        <div class="value-body">Our R&amp;D programme and engineering team are always developing new designs, with patents pending on our latest innovations.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="ti ti-leaf" aria-hidden="true"></i></div>
+        <div class="value-title">Green Manufacturing</div>
+        <div class="value-body">We're proud to operate an in-house EPS recycling machine, turning manufacturing waste into reusable pellets and reducing landfill impact.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
+        <div class="value-title">Proudly South African</div>
+        <div class="value-body">Manufactured locally, delivered locally. Our own vehicle fleet ensures orders reach our clients reliably across Southern Africa.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i class="ti ti-users" aria-hidden="true"></i></div>
+        <div class="value-title">Retail Partnership</div>
+        <div class="value-body">Best-in-industry POS material and packaging supports our retail partners — driving sales through the till with minimal stock write-offs.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-mfg">
+    <div class="about-mfg-inner">
+      <div class="about-mfg-left">
+        <p class="eyebrow" style="color:var(--green)">Manufacturing</p>
+        <div class="divider-green"></div>
+        <h2 class="about-mfg-heading">Cutting-Edge,<br>Locally Made</h2>
+        <p class="about-mfg-body">A cutting-edge and highly automated manufacturing facility allows high quality cornicing products to be locally manufactured at very affordable prices.</p>
+        <p class="about-mfg-body">At Elegant Cornicing there is continuous innovation through our research and development programmes, carried out by our engineers and development department. We are very proud to be a green manufacturer with our very own in-house recycling machine.</p>
+        <a href="products.html" class="btn-primary" style="margin-top:24px;">View Our Products</a>
+      </div>
+      <div class="about-mfg-right">
+        <img class="mfg-img" src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&auto=format&fit=crop&q=80" alt="Manufacturing facility" />
+      </div>
+    </div>
+  </section>
+
+  <section class="ec-cta">
+    <h2 class="cta-heading">Want to Know More?</h2>
+    <p class="cta-sub">Get in touch with our team or visit your nearest branch</p>
+    <div class="cta-btns"><a href="contact.html" class="btn-dark">Contact Us</a><a href="branches.html" class="btn-outline-white">Find a Branch</a></div>
+  </section>
+
+  <footer class="ec-footer">
+    <div class="footer-top">
+      <div><div class="footer-logo">Elegant <span>Cornicing</span>™</div><p class="footer-tagline">Easy. Affordable. Elegant. Locally manufactured cornicing and adhesives for Southern Africa since 2011.</p></div>
+      <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html">Branches</a></li></ul></div>
+      <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="retailers.html">Retailers Page</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:info@ecornice.co.za">info@ecornice.co.za</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Elegant Cornicing™ · All rights reserved</div>
+      <div class="footer-social"><a href="https://www.facebook.com/Elegant-Cornicing-133213743366721/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a><a href="#" class="social-btn" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a></div>
+    </div>
+  </footer>
+</body>
+</html>

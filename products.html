@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — Elegant Cornicing™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .products-section { padding: 72px 60px; background: var(--off-white); }
+    .products-section:nth-child(even) { background: var(--white); }
+    .prod-intro { font-size: 15px; color: var(--subtle); line-height: 1.8; font-weight: 300; max-width: 680px; margin-bottom: 48px; }
+    .prod-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .prod-card { background: var(--white); border: 1px solid var(--border); overflow: hidden; transition: box-shadow 0.25s; }
+    .prod-card:hover { box-shadow: 0 8px 32px rgba(28,28,30,0.1); }
+    .prod-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.4s; }
+    .prod-card:hover img { transform: scale(1.04); }
+    .prod-card-body { padding: 16px 18px 20px; }
+    .prod-code { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+    .prod-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--dark); }
+    /* Adhesives */
+    .adhesive-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .adhesive-card { background: var(--white); border: 1px solid var(--border); padding: 24px; text-align: center; transition: box-shadow 0.25s; }
+    .adhesive-card:hover { box-shadow: 0 8px 32px rgba(28,28,30,0.1); }
+    .adhesive-card img { width: 100%; max-height: 200px; object-fit: contain; display: block; margin-bottom: 16px; }
+    .adhesive-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; color: var(--dark); }
+    /* Filter tabs */
+    .filter-tabs { display: flex; gap: 0; margin-bottom: 48px; border-bottom: 1px solid var(--border); }
+    .filter-tab { padding: 12px 28px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; background: none; border: none; cursor: pointer; color: var(--muted); font-family: 'DM Sans', sans-serif; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s; }
+    .filter-tab.active, .filter-tab:hover { color: var(--green); border-bottom-color: var(--green); }
+    @media(max-width:900px) {
+      .products-section { padding: 48px 24px; }
+      .prod-grid, .adhesive-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="ec-nav">
+    <a href="index.html" class="ec-logo">Elegant <span>Cornicing</span>™</a>
+    <ul class="ec-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="retailers.html">Retailers</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="branches.html">Branches</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-inner">
+      <p class="page-hero-eyebrow">Our Range</p>
+      <h1 class="page-hero-title">Products</h1>
+      <p class="page-hero-sub">Locally manufactured cornices and adhesives — from classic traditional profiles to decorative moulded designs, and professional-grade bonding solutions.</p>
+    </div>
+  </div>
+
+  <!-- ADHESIVES -->
+  <section class="products-section" id="adhesives">
+    <div class="section-wrap">
+      <p class="eyebrow">Range 01</p>
+      <div class="divider-green"></div>
+      <h2 class="section-heading" style="margin-bottom:16px;">Adhesives</h2>
+      <p class="prod-intro">Elegant Cornicing's point of sale material and packaging is best in industry, offering customers a slick and very well presented range of adhesives and unique cornices. Stores stocking half or full concepts experience virtually no damaged stock write-offs whilst dramatically increasing sales.</p>
+      <div class="adhesive-grid">
+        <div class="adhesive-card">
+          <img src="https://ecornice.co.za/wp-content/uploads/2020/05/Tube.png" alt="260ml Cornice Adhesive Tube" />
+          <div class="adhesive-name">260ml Adhesive Tube</div>
+        </div>
+        <div class="adhesive-card">
+          <img src="https://ecornice.co.za/wp-content/uploads/2020/05/2kg-1.png" alt="2KG Cornice Adhesive" />
+          <div class="adhesive-name">2KG Adhesive</div>
+        </div>
+        <div class="adhesive-card">
+          <img src="https://ecornice.co.za/wp-content/uploads/2020/05/5kg-1.png" alt="5KG Cornice Adhesive" />
+          <div class="adhesive-name">5KG Adhesive</div>
+        </div>
+        <div class="adhesive-card">
+          <img src="https://ecornice.co.za/wp-content/uploads/2020/05/8kg.png" alt="8KG Cornice Adhesive" />
+          <div class="adhesive-name">8KG Adhesive</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRADITIONAL RANGE -->
+  <section class="products-section" id="traditional">
+    <div class="section-wrap">
+      <p class="eyebrow">Range 02</p>
+      <div class="divider-green"></div>
+      <h2 class="section-heading" style="margin-bottom:16px;">Traditional Range</h2>
+      <p class="prod-intro">Catering for all needs and requirements, our traditional range comes in 2.5 metre lengths. We offer different designs to cater for every budget, big or small.</p>
+      <div class="prod-grid">
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR01-1024x764.jpg" alt="PR01" /><div class="prod-card-body"><div class="prod-code">PR01</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR02-1024x764.jpg" alt="PR02" /><div class="prod-card-body"><div class="prod-code">PR02</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR03-1024x764.jpg" alt="PR03" /><div class="prod-card-body"><div class="prod-code">PR03</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR04-1024x764.jpg" alt="PR04" /><div class="prod-card-body"><div class="prod-code">PR04</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR05-1024x764.jpg" alt="PR05" /><div class="prod-card-body"><div class="prod-code">PR05</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR06-1024x764.jpg" alt="PR06" /><div class="prod-card-body"><div class="prod-code">PR06</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR07-1024x764.jpg" alt="PR07" /><div class="prod-card-body"><div class="prod-code">PR07</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR09-1024x764.jpg" alt="PR09" /><div class="prod-card-body"><div class="prod-code">PR09</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR10-1024x764.jpg" alt="PR10" /><div class="prod-card-body"><div class="prod-code">PR10</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR11-1024x764.jpg" alt="PR11" /><div class="prod-card-body"><div class="prod-code">PR11</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR12-1024x764.jpg" alt="PR12" /><div class="prod-card-body"><div class="prod-code">PR12</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR13-1024x764.jpg" alt="PR13" /><div class="prod-card-body"><div class="prod-code">PR13</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR14-1024x764.jpg" alt="PR14" /><div class="prod-card-body"><div class="prod-code">PR14</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR15-1024x764.jpg" alt="PR15" /><div class="prod-card-body"><div class="prod-code">PR15</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR18-1024x764.jpg" alt="PR18" /><div class="prod-card-body"><div class="prod-code">PR18</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR19-1024x764.png" alt="PR19" /><div class="prod-card-body"><div class="prod-code">PR19</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR20-1024x764.png" alt="PR20" /><div class="prod-card-body"><div class="prod-code">PR20</div><div class="prod-name">Traditional Cornice</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/PR12-1024x764.jpg" alt="PR16" /><div class="prod-card-body"><div class="prod-code">PR16</div><div class="prod-name">Paper Wrapped Cove</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOULDED RANGE -->
+  <section class="products-section" id="moulded">
+    <div class="section-wrap">
+      <p class="eyebrow">Range 03</p>
+      <div class="divider-green"></div>
+      <h2 class="section-heading" style="margin-bottom:16px;">Moulded Range</h2>
+      <p class="prod-intro">Our moulded range caters for customers who want more than the traditional range. These come in 2 metre lengths, with designs to suit everyone's needs and requirements.</p>
+      <div class="prod-grid">
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M01-1024x764.jpg" alt="M01 Elegant Rose" /><div class="prod-card-body"><div class="prod-code">M01</div><div class="prod-name">Elegant Rose</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M02-1024x764.jpg" alt="M02 Elegant Rome" /><div class="prod-card-body"><div class="prod-code">M02</div><div class="prod-name">Elegant Rome</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M03-1024x764.png" alt="M03 Damask" /><div class="prod-card-body"><div class="prod-code">M03</div><div class="prod-name">Damask</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M04-1024x764.jpg" alt="M04 Ivy" /><div class="prod-card-body"><div class="prod-code">M04</div><div class="prod-name">Ivy</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M05-1024x764.jpg" alt="M05 Basilica" /><div class="prod-card-body"><div class="prod-code">M05</div><div class="prod-name">Basilica</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M06-1024x764.jpg" alt="M06 Rope" /><div class="prod-card-body"><div class="prod-code">M06</div><div class="prod-name">Rope</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M07-1024x764.jpg" alt="M07 Crest" /><div class="prod-card-body"><div class="prod-code">M07</div><div class="prod-name">Crest</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M08-1024x764.jpg" alt="M08 Billow" /><div class="prod-card-body"><div class="prod-code">M08</div><div class="prod-name">Billow</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M09-1024x764.jpg" alt="M09 Victorian" /><div class="prod-card-body"><div class="prod-code">M09</div><div class="prod-name">Victorian</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M10-1024x764.jpg" alt="M10 Shield" /><div class="prod-card-body"><div class="prod-code">M10</div><div class="prod-name">Shield</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M11-1024x764.jpg" alt="M11 Paisley" /><div class="prod-card-body"><div class="prod-code">M11</div><div class="prod-name">Paisley</div></div></div>
+        <div class="prod-card"><img src="https://ecornice.co.za/wp-content/uploads/2020/05/M12-1024x764.jpg" alt="M12 Twine" /><div class="prod-card-body"><div class="prod-code">M12</div><div class="prod-name">Twine</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ec-cta">
+    <h2 class="cta-heading">Need Help Choosing?</h2>
+    <p class="cta-sub">Our team can help you find the right cornice and adhesive for your project</p>
+    <div class="cta-btns">
+      <a href="contact.html" class="btn-dark">Contact Us</a>
+      <a href="branches.html" class="btn-outline-white">Find a Branch</a>
+    </div>
+  </section>
+
+  <footer class="ec-footer">
+    <div class="footer-top">
+      <div><div class="footer-logo">Elegant <span>Cornicing</span>™</div><p class="footer-tagline">Easy. Affordable. Elegant. Locally manufactured cornicing and adhesives for Southern Africa since 2011.</p></div>
+      <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html">Branches</a></li></ul></div>
+      <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="retailers.html">Retailers Page</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:info@ecornice.co.za">info@ecornice.co.za</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Elegant Cornicing™ · All rights reserved</div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/Elegant-Cornicing-133213743366721/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook"><i class="ti ti-brand-facebook" aria-hidden="true"></i></a>
+        <a href="#" class="social-btn" aria-label="Instagram"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

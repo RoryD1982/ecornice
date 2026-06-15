@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Branches — Elegant Cornicing™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .branches-main { padding: 88px 60px; background: var(--off-white); }
+    .branches-inner { max-width: 1200px; margin: 0 auto; }
+    .map-wrap { margin: 56px 0 64px; background: var(--white); border: 1px solid var(--border); padding: 40px; text-align: center; }
+    .map-wrap img { max-width: 800px; width: 100%; }
+    .branches-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .branch-card { background: var(--white); padding: 36px 32px; border-left: 3px solid transparent; transition: border-color 0.2s, box-shadow 0.2s; }
+    .branch-card:hover { border-left-color: var(--green); box-shadow: 4px 0 20px rgba(28,28,30,0.06); }
+    .branch-type { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
+    .branch-city { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; color: var(--dark); margin-bottom: 6px; }
+    .branch-region { font-size: 12px; color: var(--muted); margin-bottom: 16px; font-weight: 300; }
+    .branch-detail { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--muted); font-weight: 300; margin-bottom: 8px; line-height: 1.5; }
+    .branch-detail i { color: var(--green); font-size: 15px; margin-top: 1px; flex-shrink: 0; }
+    .dist-section { padding: 72px 60px; background: var(--white); }
+    .dist-note { font-size: 15px; color: var(--subtle); line-height: 1.8; font-weight: 300; max-width: 640px; margin-bottom: 40px; }
+    @media(max-width:900px){
+      .branches-main,.dist-section { padding: 48px 24px; }
+      .branches-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="ec-nav">
+    <a href="index.html" class="ec-logo">Elegant <span>Cornicing</span>™</a>
+    <ul class="ec-nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="retailers.html">Retailers</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html" class="active">Branches</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-inner">
+      <p class="page-hero-eyebrow">Our Network</p>
+      <h1 class="page-hero-title">Branches &amp;<br><em style="font-style:italic;color:var(--green)">Distributors</em></h1>
+      <p class="page-hero-sub">With 9 branches and distributors across Southern Africa, we're always close to you and your next project.</p>
+    </div>
+  </div>
+
+  <section class="branches-main">
+    <div class="branches-inner">
+      <p class="eyebrow">Where to Find Us</p>
+      <div class="divider-green"></div>
+      <h2 class="section-heading">Our Branches Across<br>Southern Africa</h2>
+      <div class="map-wrap">
+        <img src="https://ecornice.co.za/wp-content/uploads/2020/04/Map-Of-branches.png" alt="Map of Elegant Cornicing branches across Southern Africa" />
+      </div>
+      <div class="branches-grid">
+        <div class="branch-card">
+          <div class="branch-type">Head Office</div>
+          <div class="branch-city">Johannesburg</div>
+          <div class="branch-region">Gauteng, South Africa</div>
+          <div class="branch-detail"><i class="ti ti-building-factory" aria-hidden="true"></i>Head Office &amp; 3000㎡ Manufacturing Facility</div>
+          <div class="branch-detail"><i class="ti ti-map-pin" aria-hidden="true"></i>Gauteng Province</div>
+        </div>
+        <div class="branch-card">
+          <div class="branch-type">Regional Branch</div>
+          <div class="branch-city">Cape Town</div>
+          <div class="branch-region">Western Cape, South Africa</div>
+          <div class="branch-detail"><i class="ti ti-truck-delivery" aria-hidden="true"></i>Full Distribution Centre</div>
+          <div class="branch-detail"><i class="ti ti-map-pin" aria-hidden="true"></i>Western Cape Province</div>
+        </div>
+        <div class="branch-card">
+          <div class="branch-type">Regional Branch</div>
+          <div class="branch-city">Durban</div>
+          <div class="branch-region">KwaZulu-Natal, South Africa</div>
+          <div class="branch-detail"><i class="ti ti-truck-delivery" aria-hidden="true"></i>Coastal Distribution</div>
+          <div class="branch-detail"><i class="ti ti-map-pin" aria-hidden="true"></i>KwaZulu-Natal Province</div>
+        </div>
+        <div class="branch-card">
+          <div class="branch-type">Regional Branch</div>
+          <div class="branch-city">Port Elizabeth</div>
+          <div class="branch-region">Eastern Cape, South Africa</div>
+          <div class="branch-detail"><i class="ti ti-truck-delivery" aria-hidden="true"></i>Eastern Seaboard Distribution</div>
+          <div class="branch-detail"><i class="ti ti-map-pin" aria-hidden="true"></i>Eastern Cape Province</div>
+        </div>
+        <div class="branch-card">
+          <div class="branch-type">Regional Branch</div>
+          <div class="branch-city">Polokwane</div>
+          <div class="branch-region">Limpopo, South Africa</div>
+          <div class="branch-detail"><i class="ti ti-truck-delivery" aria-hidden="true"></i>Northern Territory Coverage</div>
+          <div class="branch-detail"><i class="ti ti-map-pin" aria-hidden="true"></i>Limpopo Province</div>
+        </div>
+        <div class="branch-card">
+          <div class="branch-type">Regional Branch</div>
+          <div class="branch-city">Nelspruit</div>
+          <div class="branch-region">Mpumalanga, South Africa</div>
+          <div class="branch-detail"><i class="ti ti-truck-delivery" aria-hidden="true"></i>Eastern Lowveld Distribution</div>
+          <div class="branch-detail"><i class="ti ti-map-pin" aria-hidden="true"></i>Mpumalanga Province</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dist-section">
+    <div class="section-wrap">
+      <p class="eyebrow">Distributors</p>
+      <div class="divider-green"></div>
+      <h2 class="section-heading" style="margin-bottom:20px;">Additional Distributors</h2>
+      <p class="dist-note">In addition to our own branches, Elegant Cornicing has a wide network of distributors across Southern Africa, including Namibia and other neighbouring countries. Contact us directly for distributor information in your area.</p>
+      <a href="contact.html" class="btn-primary">Get in Touch</a>
+    </div>
+  </section>
+
+  <section class="ec-cta">
+    <h2 class="cta-heading">Can't Find a Branch Near You?</h2>
+    <p class="cta-sub">Contact us and we'll connect you with your nearest distributor</p>
+    <div class="cta-btns"><a href="contact.html" class="btn-dark">Contact Us</a><a href="retailers.html" class="btn-outline-white">Find a Retailer</a></div>
+  </section>
+
+  <footer class="ec-footer">
+    <div class="footer-top">
+      <div><div class="footer-logo">Elegant <span>Cornicing</span>™</div><p class="footer-tagline">Easy. Affordable. Elegant. Locally manufactured cornicing and adhesives for Southern Africa since 2011.</p></div>
+      <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html">Branches</a></li></ul></div>
+      <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="retailers.html">Retailers Page</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:info@ecornice.co.za">info@ecornice.co.za</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Elegant Cornicing™ · All rights reserved</div>
+      <div class="footer-social"><a href="https://www.facebook.com/Elegant-Cornicing-133213743366721/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a><a href="#" class="social-btn" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a></div>
+    </div>
+  </footer>
+</body>
+</html>

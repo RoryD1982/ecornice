@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retailers — Elegant Cornicing™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .retailers-main { padding: 88px 60px; background: var(--off-white); }
+    .retailers-intro { max-width: 1200px; margin: 0 auto 64px; display: flex; gap: 80px; align-items: center; }
+    .retailers-intro-left { flex: 1; }
+    .retailers-intro-right { flex: 1; }
+    .intro-body { font-size: 15px; color: var(--subtle); line-height: 1.85; font-weight: 300; margin-bottom: 16px; }
+    .retailer-benefits { display: flex; flex-direction: column; gap: 2px; margin-top: 32px; }
+    .benefit-row { background: var(--white); padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start; }
+    .benefit-icon { color: var(--green); font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .benefit-title { font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 4px; }
+    .benefit-body { font-size: 13px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+    .retailer-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    /* Login section */
+    .retailers-login { background: var(--dark); padding: 88px 60px; }
+    .login-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 80px; align-items: center; }
+    .login-left { flex: 1; }
+    .login-heading { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; color: var(--off-white); line-height: 1.2; margin-bottom: 16px; }
+    .login-body { font-size: 14px; color: var(--stone); line-height: 1.8; font-weight: 300; margin-bottom: 32px; }
+    .login-right { flex: 1; }
+    .login-form-wrap { background: rgba(255,255,255,0.05); border: 1px solid rgba(212,207,200,0.15); padding: 40px; }
+    .login-form-title { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 300; color: var(--off-white); margin-bottom: 28px; }
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--stone); margin-bottom: 8px; }
+    .form-input { width: 100%; padding: 14px 16px; border: 1px solid rgba(212,207,200,0.2); background: rgba(255,255,255,0.05); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--off-white); outline: none; transition: border-color 0.2s; border-radius: 0; }
+    .form-input:focus { border-color: var(--green); }
+    .form-input::placeholder { color: #555550; }
+    .login-submit { width: 100%; background: var(--green); color: #fff; padding: 16px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: opacity 0.2s; margin-top: 8px; }
+    .login-submit:hover { opacity: 0.88; }
+    .login-register { text-align: center; margin-top: 20px; font-size: 13px; color: #555550; font-weight: 300; }
+    .login-register a { color: var(--green); text-decoration: none; border-bottom: 1px solid var(--green); }
+    /* Become a stockist */
+    .stockist-section { padding: 88px 60px; background: var(--white); }
+    .stockist-inner { max-width: 1200px; margin: 0 auto; }
+    .stockist-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 56px; border: 1px solid var(--border); }
+    .stockist-item { padding: 40px 36px; border-right: 1px solid var(--border); }
+    .stockist-item:last-child { border-right: none; }
+    .stockist-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 300; color: var(--green); line-height: 1; margin-bottom: 16px; }
+    .stockist-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 400; color: var(--dark); margin-bottom: 12px; }
+    .stockist-body { font-size: 14px; color: var(--muted); line-height: 1.8; font-weight: 300; }
+    @media(max-width:900px){
+      .retailers-main,.retailers-login,.stockist-section { padding: 48px 24px; }
+      .retailers-intro,.login-inner { flex-direction: column; gap: 40px; }
+      .stockist-grid { grid-template-columns: 1fr; }
+      .stockist-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stockist-item:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="ec-nav">
+    <a href="index.html" class="ec-logo">Elegant <span>Cornicing</span>™</a>
+    <ul class="ec-nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="retailers.html" class="active">Retailers</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html">Branches</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-inner">
+      <p class="page-hero-eyebrow">Trade Portal</p>
+      <h1 class="page-hero-title">Retailers<br><em style="font-style:italic;color:var(--green)">Page</em></h1>
+      <p class="page-hero-sub">Access your retailer account, manage orders, and discover how to become a stockist of Elegant Cornicing products.</p>
+    </div>
+  </div>
+
+  <!-- INTRO + BENEFITS -->
+  <section class="retailers-main">
+    <div class="retailers-intro">
+      <div class="retailers-intro-left">
+        <p class="eyebrow">Why Stock Our Products</p>
+        <div class="divider-green"></div>
+        <h2 class="section-heading" style="margin-bottom:20px;">Partner With the Best</h2>
+        <p class="intro-body">Since 2011, Elegant Cornicing has built a reputation for delivering high-quality products to thousands of retailers across Southern Africa. Our best-in-industry packaging and POS materials drive sales and reduce stock write-offs.</p>
+        <p class="intro-body">Stores stocking a half or full concept experience dramatically increased sales through the till, with virtually no damaged stock write-offs.</p>
+        <a href="contact.html" class="btn-primary" style="margin-top:24px;">Become a Stockist</a>
+      </div>
+      <div class="retailers-intro-right">
+        <div class="retailer-benefits">
+          <div class="benefit-row"><i class="ti ti-package benefit-icon" aria-hidden="true"></i><div><div class="benefit-title">Best-in-Industry Packaging</div><div class="benefit-body">Slick, well-presented POS material that sells the product before a word is spoken.</div></div></div>
+          <div class="benefit-row"><i class="ti ti-chart-bar benefit-icon" aria-hidden="true"></i><div><div class="benefit-title">Proven Sales Performance</div><div class="benefit-body">Retailers stocking our concept see dramatically increased cornice category sales.</div></div></div>
+          <div class="benefit-row"><i class="ti ti-shield-check benefit-icon" aria-hidden="true"></i><div><div class="benefit-title">Minimal Stock Write-offs</div><div class="benefit-body">Durable packaging means near-zero damaged stock — protecting your margins.</div></div></div>
+          <div class="benefit-row"><i class="ti ti-truck-delivery benefit-icon" aria-hidden="true"></i><div><div class="benefit-title">Reliable Supply Chain</div><div class="benefit-body">Our own vehicle fleet and 9 branches ensure consistent, on-time deliveries nationwide.</div></div></div>
+          <div class="benefit-row"><i class="ti ti-headset benefit-icon" aria-hidden="true"></i><div><div class="benefit-title">Dedicated Account Support</div><div class="benefit-body">Our team provides hands-on support to maximise your category performance.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGIN -->
+  <section class="retailers-login">
+    <div class="login-inner">
+      <div class="login-left">
+        <p class="eyebrow" style="color:var(--green)">Trade Portal</p>
+        <div class="divider-green"></div>
+        <h2 class="login-heading">Existing Retailer?<br>Login to Your Account</h2>
+        <p class="login-body">Access your order history, place new orders, download marketing assets, and manage your account — all in one place.</p>
+        <p class="login-body">Not registered yet? Contact our team to get set up as an authorised stockist.</p>
+        <a href="contact.html" class="btn-primary">Register as a Retailer</a>
+      </div>
+      <div class="login-right">
+        <div class="login-form-wrap">
+          <div class="login-form-title">Retailer Login</div>
+          <form onsubmit="e=>e.preventDefault()">
+            <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="your@store.co.za" /></div>
+            <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" placeholder="••••••••" /></div>
+            <button type="submit" class="login-submit">Login to Portal</button>
+          </form>
+          <div class="login-register">Don't have an account? <a href="contact.html">Contact us to register</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BECOME A STOCKIST STEPS -->
+  <section class="stockist-section">
+    <div class="stockist-inner">
+      <p class="eyebrow">Become a Stockist</p>
+      <div class="divider-green"></div>
+      <h2 class="section-heading">How to Get Started</h2>
+      <div class="stockist-grid">
+        <div class="stockist-item">
+          <div class="stockist-num">01</div>
+          <div class="stockist-title">Get in Touch</div>
+          <div class="stockist-body">Contact our team via email or through our contact form. Tell us about your store and the markets you serve.</div>
+        </div>
+        <div class="stockist-item">
+          <div class="stockist-num">02</div>
+          <div class="stockist-title">Account Setup</div>
+          <div class="stockist-body">Our sales team will set up your account and recommend the right product range and concept for your store.</div>
+        </div>
+        <div class="stockist-item">
+          <div class="stockist-num">03</div>
+          <div class="stockist-title">Start Selling</div>
+          <div class="stockist-body">We deliver your stock, supply POS materials, and provide ongoing support to grow your cornice category.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ec-cta">
+    <h2 class="cta-heading">Ready to Stock Elegant Cornicing?</h2>
+    <p class="cta-sub">Get in touch with our team today to discuss your requirements</p>
+    <div class="cta-btns"><a href="contact.html" class="btn-dark">Contact Us</a><a href="products.html" class="btn-outline-white">View Products</a></div>
+  </section>
+
+  <footer class="ec-footer">
+    <div class="footer-top">
+      <div><div class="footer-logo">Elegant <span>Cornicing</span>™</div><p class="footer-tagline">Easy. Affordable. Elegant. Locally manufactured cornicing and adhesives for Southern Africa since 2011.</p></div>
+      <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html">Branches</a></li></ul></div>
+      <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="retailers.html">Retailers Page</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:info@ecornice.co.za">info@ecornice.co.za</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Elegant Cornicing™ · All rights reserved</div>
+      <div class="footer-social"><a href="https://www.facebook.com/Elegant-Cornicing-133213743366721/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a><a href="#" class="social-btn" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a></div>
+    </div>
+  </footer>
+</body>
+</html>

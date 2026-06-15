@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ — Elegant Cornicing™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .faq-main { padding: 88px 60px; background: var(--off-white); }
+    .faq-inner { max-width: 860px; margin: 0 auto; }
+    .faq-category { margin-bottom: 64px; }
+    .faq-cat-title { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--dark); margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .faq-item { background: var(--white); margin-bottom: 2px; }
+    .faq-question { width: 100%; text-align: left; padding: 24px 28px; background: none; border: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 400; color: var(--dark); line-height: 1.5; }
+    .faq-question:hover { color: var(--green); }
+    .faq-question i { font-size: 18px; color: var(--green); flex-shrink: 0; margin-left: 16px; transition: transform 0.3s; }
+    .faq-question.open i { transform: rotate(45deg); }
+    .faq-answer { padding: 0 28px; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s; }
+    .faq-answer.open { max-height: 800px; padding: 0 28px 28px; }
+    .faq-answer p { font-size: 14px; color: var(--subtle); line-height: 1.85; font-weight: 300; margin-bottom: 12px; }
+    .faq-answer p:last-child { margin-bottom: 0; }
+    .faq-answer ol { padding-left: 20px; }
+    .faq-answer ol li { font-size: 14px; color: var(--subtle); line-height: 1.85; font-weight: 300; margin-bottom: 6px; }
+    .recycle-highlight { background: var(--dark); border-left: 3px solid var(--green); padding: 20px 24px; margin-top: 16px; }
+    .recycle-highlight p { color: var(--stone) !important; }
+    .recycle-highlight strong { color: var(--green); }
+    @media(max-width:900px){ .faq-main { padding: 48px 24px; } }
+  </style>
+</head>
+<body>
+  <nav class="ec-nav">
+    <a href="index.html" class="ec-logo">Elegant <span>Cornicing</span>™</a>
+    <ul class="ec-nav-links">
+      <li><a href="index.html">Home</a></li><li><a href="retailers.html">Retailers</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html">Branches</a></li><li><a href="contact.html">Contact</a></li><li><a href="faq.html" class="active">FAQ</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="page-hero-inner">
+      <p class="page-hero-eyebrow">Knowledge Base</p>
+      <h1 class="page-hero-title">Frequently Asked<br><em style="font-style:italic;color:var(--green)">Questions</em></h1>
+      <p class="page-hero-sub">Everything you need to know about cornicing, polystyrene, and our products and processes.</p>
+    </div>
+  </div>
+
+  <section class="faq-main">
+    <div class="faq-inner">
+
+      <div class="faq-category">
+        <div class="faq-cat-title">About Cornicing</div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggle(this)">What is a cornice?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer">
+            <p>A cornice is a decorative finish used in homes to neatly finish off the join between the wall and ceiling. It can be attached with nails, however with new technology and the use of polystyrene cornices, the process of installing the finish has become a lot faster and can now easily be glued into place.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggle(this)">How do I install a cornice?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer">
+            <p>Installing a polystyrene cornice is simple with the right adhesive. Clean the wall and ceiling surfaces, apply our cornice adhesive along both the wall and ceiling contact edges of the cornice, press firmly into position and hold for a few seconds. Mitre the corners for a professional finish. Wipe away excess adhesive immediately.</p>
+            <p>For best results, use Elegant Cornicing adhesive, specifically formulated for our cornice range.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggle(this)">What sizes do your cornices come in?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer">
+            <p>Our Traditional Range comes in <strong>2.5 metre lengths</strong>, while our Moulded Range comes in <strong>2 metre lengths</strong>. Both ranges offer a wide variety of profiles to suit different aesthetic preferences and budgets.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-category">
+        <div class="faq-cat-title">About Polystyrene</div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggle(this)">What is polystyrene?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer">
+            <p>Polystyrene (PS) is a synthetic aromatic polymer made from the monomer styrene. It is a hard, quite brittle plastic, typically used in CD cases, disposable razors, plastic cutlery, and similar items.</p>
+            <p>Expanded Polystyrene (EPS) is this same brittle plastic that has been foamed using a gas, generally Butane or Pentane. EPS is typically used in insulation for cold rooms, packing material, disposable plates and cups, and — in our case — cornicing.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggle(this)">How is Expanded Polystyrene (EPS) manufactured?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer">
+            <p>EPS is created in a two-stage process:</p>
+            <ol>
+              <li>Raw beads are expanded using steam, creating pre-puff beads, which are then cured in large bags before being conveyed to the mould.</li>
+              <li>Once in the mould, the pre-puff beads are again steamed to form a block measuring 2550mm × 1250mm × 960mm.</li>
+            </ol>
+            <p>The blocks are then placed on the storage floor to age for the appropriate length of time before being cut into various shapes and sizes. Blocks are produced in several densities to meet specific project needs.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-category">
+        <div class="faq-cat-title">Sustainability &amp; Recycling</div>
+        <div class="faq-item">
+          <button class="faq-question open" onclick="toggle(this)">Is Elegant Cornicing environmentally responsible?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer open">
+            <p>Elegant Cornicing is very proud to be a green manufacturer with our very own in-house recycling machine.</p>
+            <div class="recycle-highlight">
+              <p><strong>Did you know?</strong> Less than 10% of plastic manufactured worldwide is recycled, as opposed to more than 90% of steel. Weight for weight, plastic is actually more expensive than steel, making it a very valuable commodity that is completely overlooked.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggle(this)">Why is recycling important?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer">
+            <p>Simply put — we only have one Earth and one chance to look after it. Recycling is very important as waste has a huge negative impact on the natural environment. Plastic has an estimated lifespan in a landfill of more than 450 years. Harmful chemicals and greenhouse gases are released from rubbish in landfill sites.</p>
+            <p>Recycling helps to reduce the pollution caused by waste and also reduces the need for raw materials so that the environment can be preserved.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggle(this)">How does your EPS recycling process work?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer">
+            <p>It really is a simple process:</p>
+            <ol>
+              <li><strong>Collect</strong> EPS that can be recycled from manufacturing waste.</li>
+              <li><strong>Crush/chip</strong> the EPS and store in large storage bins (our bins stand 6m high and hold a massive volume).</li>
+              <li><strong>Transfer</strong> material to a 2-process extruding and pelletising line, which produces reusable pellets.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-category">
+        <div class="faq-cat-title">Purchasing &amp; Stockists</div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggle(this)">Where can I buy Elegant Cornicing products?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer">
+            <p>Our products are available in thousands of retail stores across Southern Africa, including major hardware and home improvement chains. Visit our <a href="retailers.html" style="color:var(--green);">Retailers Page</a> for a full list of stockists, or contact your nearest <a href="branches.html" style="color:var(--green);">branch</a> for more information.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggle(this)">Can I buy directly from Elegant Cornicing?<i class="ti ti-plus"></i></button>
+          <div class="faq-answer">
+            <p>Yes — trade and bulk orders can be placed directly through our branches. Please <a href="contact.html" style="color:var(--green);">contact us</a> or visit your nearest branch to discuss your requirements.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="ec-cta">
+    <h2 class="cta-heading">Still Have Questions?</h2>
+    <p class="cta-sub">Our team is happy to help — get in touch with your nearest branch</p>
+    <div class="cta-btns"><a href="contact.html" class="btn-dark">Contact Us</a><a href="branches.html" class="btn-outline-white">Find a Branch</a></div>
+  </section>
+
+  <footer class="ec-footer">
+    <div class="footer-top">
+      <div><div class="footer-logo">Elegant <span>Cornicing</span>™</div><p class="footer-tagline">Easy. Affordable. Elegant. Locally manufactured cornicing and adhesives for Southern Africa since 2011.</p></div>
+      <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="branches.html">Branches</a></li></ul></div>
+      <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="retailers.html">Retailers Page</a></li><li><a href="faq.html">FAQ</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:info@ecornice.co.za">info@ecornice.co.za</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Elegant Cornicing™ · All rights reserved</div>
+      <div class="footer-social"><a href="https://www.facebook.com/Elegant-Cornicing-133213743366721/" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a><a href="#" class="social-btn" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a></div>
+    </div>
+  </footer>
+  <script>
+    function toggle(btn){
+      btn.classList.toggle('open');
+      btn.nextElementSibling.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
